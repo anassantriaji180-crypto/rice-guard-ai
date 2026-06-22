@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#16a34a">
+    <title>RiceGuard AI - AgriTech Detection System</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #16a34a;
+            --primary-dark: #15803d;
+            --secondary: #059669;
+            --accent: #10b981;
+            --background: #f8fafc;
+            --surface: #ffffff;
+            --border-color: #e2e8f0;
+            --text-primary: #0f172a;
+            --text-secondary: #64748b;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            background: var(--background);
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(248, 250, 252, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(22, 163, 74, 0.15);
+            z-index: 1000;
+            padding: 1rem 2rem;
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            color: var(--primary);
+            font-weight: 700;
+            font-size: 1.25rem;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-link {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: var(--primary);
+        }
+
+        .hero-section {
+            min-height: 100vh;
+            padding: 8rem 2rem 4rem;
+            background: linear-gradient(135deg, #f8fafc 0%, #f0fdf4 50%, #ecfdf5 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hero-content {
+            max-width: 1000px;
+            text-align: center;
+        }
+
+        .hero-title {
+            font-family: 'Poppins', sans-serif;
+            font-size: 3.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #15803d 0%, #10b981 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 1rem;
+        }
+
+        .hero-subtitle {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+        }
+
+        .cta-button {
+            background: linear-gradient(135deg, #16a34a 0%, #10b981 100%);
+            color: white;
+            padding: 1rem 2.5rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 10px 30px rgba(22, 163, 74, 0.25);
+            transition: all 0.3s ease;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(22, 163, 74, 0.35);
+        }
+
+        .section {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 6rem 2rem;
+        }
+
+        .section h2 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 2rem;
+            margin-bottom: 3rem;
+            text-align: center;
+            color: var(--primary);
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(22, 163, 74, 0.15);
+            border-radius: 16px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 30px rgba(22, 163, 74, 0.1);
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-card h3 {
+            font-family: 'Poppins', sans-serif;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .feature-card p {
+            color: var(--text-secondary);
+            line-height: 1.8;
+        }
+
+        .refresh-demo {
+            background: var(--surface);
+            border-radius: 16px;
+            padding: 3rem;
+            border: 1px solid var(--border-color);
+            margin: 2rem auto;
+            max-width: 600px;
+        }
+
+        .demo-controls {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .demo-btn {
+            padding: 0.875rem;
+            border: none;
+            border-radius: 10px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.9375rem;
+        }
+
+        .refresh-btn {
+            background: linear-gradient(135deg, #16a34a 0%, #10b981 100%);
+            color: white;
+            box-shadow: 0 4px 6px rgba(22, 163, 74, 0.1);
+        }
+
+        .refresh-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(22, 163, 74, 0.2);
+        }
+
+        .new-scan-btn {
+            background: #f1f5f9;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+        }
+
+        .new-scan-btn:hover {
+            background: rgba(22, 163, 74, 0.05);
+            transform: translateY(-2px);
+        }
+
+        .tech-stack {
+            background: linear-gradient(135deg, rgba(22, 163, 74, 0.05) 0%, rgba(16, 185, 129, 0.05) 100%);
+            padding: 1.5rem;
+            border-radius: 12px;
+            margin-top: 2rem;
+        }
+
+        .footer {
+            background: linear-gradient(135deg, #16a34a 0%, #10b981 100%);
+            color: white;
+            text-align: center;
+            padding: 3rem 2rem;
+            margin-top: 5rem;
+        }
+
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2rem;
+            }
+
+            .demo-controls {
+                grid-template-columns: 1fr;
+            }
+
+            .nav-menu {
+                gap: 1rem;
+                font-size: 0.875rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">🌾 RiceGuard AI</div>
+            <ul class="nav-menu">
+                <li><a href="#features" class="nav-link">Features</a></li>
+                <li><a href="#refresh" class="nav-link">Refresh System</a></li>
+                <li><a href="#camera" class="nav-link">Real-Time Camera</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="hero-content">
+            <h1 class="hero-title">RiceGuard AI Detection System</h1>
+            <p class="hero-subtitle">Modern AgriTech Platform with Real-Time Rice Disease Classification</p>
+            <button class="cta-button" onclick="document.getElementById('features').scrollIntoView({behavior:'smooth'})">Explore Features</button>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="section">
+        <h2>AgriTech Features</h2>
+        <div class="feature-grid">
+            <div class="feature-card">
+                <div class="feature-icon">📱</div>
+                <h3>Real-Time Camera</h3>
+                <p>Camera works immediately without requiring image upload first. Start scanning rice leaves in real-time, right from your device.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">🔄</div>
+                <h3>Refresh & Retry</h3>
+                <p>After analyzing an image, instantly refresh the analysis or start a completely new scan with a single button click.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">🎨</div>
+                <h3>Modern Design</h3>
+                <p>Premium glassmorphism UI with soft shadows, perfect for academic research and thesis demonstrations.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">🌿</div>
+                <h3>AgriTech Colors</h3>
+                <p>Professional green (#16a34a) and emerald palette specifically designed for agricultural applications.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">📊</div>
+                <h3>Instant Results</h3>
+                <p>Get immediate classification results with confidence percentages and detailed probability analysis.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">📱</div>
+                <h3>Mobile Responsive</h3>
+                <p>Fully optimized for mobile devices with touch-friendly controls and responsive layouts.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Refresh System Section -->
+    <section id="refresh" class="section">
+        <h2>Refresh & Restart System</h2>
+        <div class="refresh-demo">
+            <h3 style="color: var(--primary); font-family: 'Poppins', sans-serif; margin-bottom: 1rem;">Try Refresh Actions</h3>
+            <p style="color: var(--text-secondary); margin-bottom: 1.5rem;">
+                After capturing or uploading an image, you have two options:
+            </p>
+            <div class="demo-controls">
+                <button class="demo-btn refresh-btn" onclick="alert('🔄 Refresh Analysis - Reanalyze the current image with updated parameters')">🔄 Refresh Analysis</button>
+                <button class="demo-btn new-scan-btn" onclick="alert('📸 New Scan - Clear results and start fresh with camera or upload')">📸 New Scan</button>
+            </div>
+            <div class="tech-stack">
+                <strong>Technology Stack:</strong>
+                <p style="margin-top: 0.75rem; color: var(--text-secondary);">
+                    Flask Backend • YOLOv8 Classification • Real-Time Processing • Modern Frontend • Progressive Web App
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Camera Section -->
+    <section id="camera" class="section">
+        <h2>Real-Time Camera Integration</h2>
+        <div class="feature-grid">
+            <div class="feature-card">
+                <div class="feature-icon">🎥</div>
+                <h3>Immediate Access</h3>
+                <p>Camera button is always available. No need to upload first. Start capturing rice leaf images instantly.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">🔄</div>
+                <h3>Switch Cameras</h3>
+                <p>Toggle between front and rear cameras seamlessly. Perfect for both indoor and outdoor scanning.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">📸</div>
+                <h3>Capture & Classify</h3>
+                <p>Capture photos and get instant AI-powered classification with confidence metrics and disease analysis.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">⏹️</div>
+                <h3>Easy Controls</h3>
+                <p>Intuitive controls for capturing, switching cameras, and stopping the camera stream anytime.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">📊</div>
+                <h3>Live Feedback</h3>
+                <p>Real-time status indicators show camera connection, capture success, and processing status.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">♿</div>
+                <h3>Accessible Design</h3>
+                <p>Fully accessible UI with keyboard navigation and screen reader support for inclusive experience.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <h3>RiceGuard AI - AgriTech Detection System</h3>
+        <p style="margin-top: 1rem;">Modern Agriculture Technology Platform for Rice Disease Classification</p>
+        <p style="margin-top: 1rem; opacity: 0.9;">Powered by YOLOv8 • Built for Research & Academia</p>
+    </footer>
+</body>
+</html>

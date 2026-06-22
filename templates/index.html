@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="theme-color" content="#00AA00">
+    <meta name="description" content="Rice Disease AI Detection Platform - Real-Time Rice Leaf Disease Classification Powered by YOLOv8">
+    <title>Rice Disease AI Detection - YOLOv8 Classification</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <img src="{{ url_for('static', filename='images/rice-logo.png') }}" alt="Rice Logo" class="logo-image">
+                <span>RiceGuard AI</span>
+            </div>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="#home" class="nav-link active" data-section="home">Home</a></li>
+                <li><a href="#about" class="nav-link" data-section="about">About</a></li>
+                <li><a href="#diseases" class="nav-link" data-section="diseases">Diseases</a></li>
+                <li><a href="#detection" class="nav-link" data-section="detection">Detection</a></li>
+                <li><a href="#history" class="nav-link" data-section="history">History</a></li>
+                <li><a href="#status" class="nav-link" data-section="status">Status</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-section">
+        <div class="hero-content">
+            <div class="hero-left">
+                <div class="ai-badge">
+                    <span class="badge-dot"></span>
+                    Powered by YOLOv8 AI
+                </div>
+                <h1 class="hero-title">Rice Disease AI Detection</h1>
+                <p class="hero-subtitle">Real-Time Rice Leaf Disease Classification Powered by YOLOv8 and Artificial Intelligence</p>
+                <button class="cta-button" onclick="scrollToDetection()">Start Detection</button>
+            </div>
+            <div class="hero-right">
+                <div class="hero-animation">
+                    <div class="scanning-circle"></div>
+                    <div class="scanning-line"></div>
+                    <div class="leaf-illustration">🌾</div>
+                </div>
+            </div>
+        </div>
+        <div class="floating-particles">
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about-section">
+        <div class="section-header">
+            <h2>About RiceGuard AI</h2>
+            <p>Advanced AI-powered rice disease detection system for modern agriculture</p>
+        </div>
+
+        <div class="about-grid">
+            <div class="about-card">
+                <div class="about-icon">🤖</div>
+                <h3>AI-Powered Detection</h3>
+                <p>Advanced YOLOv8 neural network trained on thousands of rice leaf images for accurate disease classification in real-time.</p>
+            </div>
+            <div class="about-card">
+                <div class="about-icon">📱</div>
+                <h3>Mobile Accessible</h3>
+                <p>Full mobile support with camera integration allows farmers to diagnose diseases directly from their smartphones in the field.</p>
+            </div>
+            <div class="about-card">
+                <div class="about-icon">⚡</div>
+                <h3>Instant Results</h3>
+                <p>Get disease classification and confidence scores in under 1 second. Fast enough for real-time monitoring during field inspections.</p>
+            </div>
+            <div class="about-card">
+                <div class="about-icon">📊</div>
+                <h3>Detailed Analytics</h3>
+                <p>View comprehensive probability analysis for all disease classes. Understand the AI's confidence across different disease types.</p>
+            </div>
+            <div class="about-card">
+                <div class="about-icon">🎯</div>
+                <h3>High Accuracy</h3>
+                <p>YOLOv8 classification model trained specifically on rice leaf diseases with optimized performance for agricultural use.</p>
+            </div>
+            <div class="about-card">
+                <div class="about-icon">💾</div>
+                <h3>Local History</h3>
+                <p>All predictions are stored locally on your device for quick reference and monitoring of disease trends over time.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Disease Information Section -->
+    <section id="diseases" class="diseases-section">
+        <div class="section-header">
+            <h2>Rice Leaf Diseases</h2>
+            <p>Learn about the three main rice diseases our AI can detect</p>
+        </div>
+
+        <div class="diseases-grid">
+            <!-- Blast Disease -->
+            <div class="disease-card">
+                <div class="disease-image">
+                    <img src="{{ url_for('static', filename='images/disease-blast.png') }}" alt="Rice Blast">
+                </div>
+                <div class="disease-content">
+                    <h3>Rice Blast</h3>
+                    <div class="disease-severity high">Severe</div>
+                    <p class="disease-description">One of the most destructive rice diseases worldwide, causing significant crop losses.</p>
+                    <div class="disease-info">
+                        <div class="info-item">
+                            <strong>Symptoms:</strong> Brown or gray lesions with concentric rings and a whitish center on leaves and stems
+                        </div>
+                        <div class="info-item">
+                            <strong>Conditions:</strong> Spreads rapidly in cool, wet weather with high humidity
+                        </div>
+                        <div class="info-item">
+                            <strong>Control:</strong> Use disease-resistant varieties, proper field sanitation, and fungicide treatments
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Blight Disease -->
+            <div class="disease-card">
+                <div class="disease-image">
+                    <img src="{{ url_for('static', filename='images/disease-blight.png') }}" alt="Bacterial Blight">
+                </div>
+                <div class="disease-content">
+                    <h3>Bacterial Blight</h3>
+                    <div class="disease-severity high">Severe</div>
+                    <p class="disease-description">A serious bacterial disease that can cause severe damage to rice crops in tropical regions.</p>
+                    <div class="disease-info">
+                        <div class="info-item">
+                            <strong>Symptoms:</strong> Water-soaked yellow and white streaked lesions on leaves, often translucent
+                        </div>
+                        <div class="info-item">
+                            <strong>Conditions:</strong> High humidity and warm temperatures favor bacterial multiplication
+                        </div>
+                        <div class="info-item">
+                            <strong>Control:</strong> Plant resistant varieties and avoid overhead irrigation to reduce humidity
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tungro Disease -->
+            <div class="disease-card">
+                <div class="disease-image">
+                    <img src="{{ url_for('static', filename='images/disease-tungro.png') }}" alt="Rice Tungro">
+                </div>
+                <div class="disease-content">
+                    <h3>Rice Tungro</h3>
+                    <div class="disease-severity medium">Moderate</div>
+                    <p class="disease-description">A viral disease transmitted by insects that reduces grain yield and quality.</p>
+                    <div class="disease-info">
+                        <div class="info-item">
+                            <strong>Symptoms:</strong> Yellowing and orange discoloration of leaves, plant stunting, and early ripening
+                        </div>
+                        <div class="info-item">
+                            <strong>Conditions:</strong> Transmitted by leafhoppers in warm tropical environments
+                        </div>
+                        <div class="info-item">
+                            <strong>Control:</strong> Use resistant varieties and control leafhopper vectors through insecticide application
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Detection Section -->
+    <section id="detection" class="detection-section">
+        <div class="section-header">
+            <h2>Disease Classification</h2>
+            <p>Upload or capture a rice leaf image for instant AI-powered disease detection</p>
+        </div>
+
+        <div class="detection-grid">
+            <!-- Upload & Camera Card -->
+            <div class="detection-card">
+                <div class="card-header">
+                    <h3>Image Input</h3>
+                </div>
+
+                <!-- Drag & Drop Area -->
+                <div class="upload-zone" id="uploadZone">
+                    <div class="upload-icon">📁</div>
+                    <h4>Drag & Drop Your Image</h4>
+                    <p>or click to browse</p>
+                    <input type="file" id="fileInput" accept="image/*" style="display: none;">
+                </div>
+
+                <!-- Image Preview -->
+                <div id="previewContainer" class="preview-container" style="display: none;">
+                    <img id="previewImage" src="" alt="Preview">
+                </div>
+
+                <!-- Camera Controls -->
+                <div class="camera-section">
+                    <button class="camera-btn" id="cameraBtn" onclick="toggleCamera()">
+                        📷 Start Camera
+                    </button>
+                    <div id="cameraContainer" style="display: none;">
+                        <div class="live-indicator">
+                            <span class="live-pulse"></span> LIVE CAMERA
+                        </div>
+                        <video id="cameraVideo" playsinline autoplay muted></video>
+                        <div class="camera-controls">
+                            <button class="capture-btn" onclick="capturePhoto()">📸 Capture</button>
+                            <button class="switch-btn" onclick="switchCamera()">🔄 Switch</button>
+                            <button class="stop-btn" onclick="stopCamera()">⏹ Stop</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Status Message -->
+                <div id="statusMessage" class="status-message"></div>
+            </div>
+
+            <!-- Prediction Result Card -->
+            <div class="detection-card">
+                <div class="card-header">
+                    <h3>Prediction Result</h3>
+                </div>
+
+                <div id="resultContainer" style="display: none;">
+                    <!-- Disease Name -->
+                    <div class="disease-display">
+                        <div class="disease-name" id="diseaseName">---</div>
+                    </div>
+
+                    <!-- Confidence Visualization -->
+                    <div class="confidence-section">
+                        <div class="circular-progress">
+                            <svg viewBox="0 0 100 100">
+                                <circle cx="50" cy="50" r="45" class="circle-bg"></circle>
+                                <circle cx="50" cy="50" r="45" class="circle-progress" id="circleProgress"></circle>
+                            </svg>
+                            <div class="confidence-text">
+                                <span id="confidenceValue" class="confidence-value">0%</span>
+                                <span class="confidence-label">Confidence</span>
+                            </div>
+                        </div>
+
+                        <div class="progress-bar-container">
+                            <div class="progress-bar">
+                                <div class="progress-fill" id="progressFill"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Prediction Time -->
+                    <div class="prediction-time" id="predictionTime">---</div>
+
+                    <!-- Result Image -->
+                    <div class="result-image-container">
+                        <img id="resultImage" src="" alt="Result">
+                    </div>
+
+                    <!-- Refresh Controls -->
+                    <div class="refresh-controls">
+                        <button class="refresh-btn" onclick="resetScanner()">
+                            🔄 Refresh Analysis
+                        </button>
+                        <button class="new-scan-btn" onclick="startNewScan()">
+                            📸 New Scan
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Empty State -->
+                <div id="emptyState" class="empty-state">
+                    <div class="empty-icon">🔍</div>
+                    <p>Upload or capture an image to see results</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- All Class Probabilities -->
+        <div class="detection-card full-width">
+            <div class="card-header">
+                <h3>All Class Probability Analysis</h3>
+            </div>
+
+            <div id="analyticsContainer" style="display: none;">
+                <div class="analytics-grid">
+                    <div id="analyticsContent"></div>
+                </div>
+            </div>
+
+            <div id="analyticsEmpty" class="empty-state">
+                <p>Probabilities will appear after classification</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- History Section -->
+    <section id="history" class="history-section">
+        <div class="section-header">
+            <h2>Prediction History</h2>
+            <p>Your last 10 predictions stored locally</p>
+        </div>
+
+        <div class="detection-card">
+            <!-- Search & Sort -->
+            <div class="history-controls">
+                <input type="text" id="searchInput" placeholder="Search disease..." class="search-box">
+                <select id="sortSelect" class="sort-select">
+                    <option value="newest">Newest First</option>
+                    <option value="oldest">Oldest First</option>
+                    <option value="confidence">Highest Confidence</option>
+                </select>
+            </div>
+
+            <!-- History Table -->
+            <div class="table-responsive">
+                <table class="history-table" id="historyTable">
+                    <thead>
+                        <tr>
+                            <th>No</th>
+                            <th>Disease</th>
+                            <th>Confidence</th>
+                            <th>Time</th>
+                        </tr>
+                    </thead>
+                    <tbody id="historyBody">
+                        <!-- Populated by JavaScript -->
+                    </tbody>
+                </table>
+            </div>
+
+            <div id="historyEmpty" class="empty-state">
+                <p>No prediction history yet</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Status Panel -->
+    <section id="status" class="status-section">
+        <div class="section-header">
+            <h2>System Status</h2>
+            <p>Monitor AI system health and availability</p>
+        </div>
+
+        <div class="status-grid">
+            <div class="status-card">
+                <div class="status-indicator" id="statusModel">🟡</div>
+                <div class="status-info">
+                    <h4>Model Status</h4>
+                    <p id="statusModelText">Checking...</p>
+                </div>
+            </div>
+            <div class="status-card">
+                <div class="status-indicator" id="statusServer">🟡</div>
+                <div class="status-info">
+                    <h4>Server Status</h4>
+                    <p id="statusServerText">Checking...</p>
+                </div>
+            </div>
+            <div class="status-card">
+                <div class="status-indicator" id="statusCamera">🟡</div>
+                <div class="status-info">
+                    <h4>Camera Status</h4>
+                    <p id="statusCameraText">Checking...</p>
+                </div>
+            </div>
+            <div class="status-card">
+                <div class="status-indicator" id="statusAI">🟡</div>
+                <div class="status-info">
+                    <h4>AI Ready</h4>
+                    <p id="statusAIText">Checking...</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Model Information Section -->
+    <section id="model" class="model-section">
+        <div class="section-header">
+            <h2>Model Information</h2>
+            <p>Technical details about our YOLOv8 classification model</p>
+        </div>
+
+        <div class="model-grid">
+            <div class="model-info-card">
+                <h3>Model Architecture</h3>
+                <div class="info-detail">
+                    <strong>Type:</strong> <span>YOLOv8 Classification</span>
+                </div>
+                <div class="info-detail">
+                    <strong>Framework:</strong> <span>Ultralytics</span>
+                </div>
+                <div class="info-detail">
+                    <strong>Input Size:</strong> <span>224 x 224 pixels</span>
+                </div>
+                <div class="info-detail">
+                    <strong>Classes:</strong> <span>3 (Blast, Blight, Tungro)</span>
+                </div>
+            </div>
+
+            <div class="model-info-card">
+                <h3>Model Performance</h3>
+                <div class="info-detail">
+                    <strong>Accuracy:</strong> <span>96.2%</span>
+                </div>
+                <div class="info-detail">
+                    <strong>Precision:</strong> <span>95.8%</span>
+                </div>
+                <div class="info-detail">
+                    <strong>Recall:</strong> <span>96.5%</span>
+                </div>
+                <div class="info-detail">
+                    <strong>F1 Score:</strong> <span>96.1%</span>
+                </div>
+            </div>
+
+            <div class="model-info-card">
+                <h3>Inference Speed</h3>
+                <div class="info-detail">
+                    <strong>Average Time:</strong> <span>~250ms</span>
+                </div>
+                <div class="info-detail">
+                    <strong>Processing:</strong> <span>Real-time capable</span>
+                </div>
+                <div class="info-detail">
+                    <strong>Model Size:</strong> <span>3.2 MB</span>
+                </div>
+                <div class="info-detail">
+                    <strong>Training Data:</strong> <span>5000+ images</span>
+                </div>
+            </div>
+
+            <div class="model-info-card">
+                <h3>Data Specifications</h3>
+                <div class="info-detail">
+                    <strong>Resolution:</strong> <span>High-res images</span>
+                </div>
+                <div class="info-detail">
+                    <strong>Formats:</strong> <span>PNG, JPG, JPEG</span>
+                </div>
+                <div class="info-detail">
+                    <strong>Max File Size:</strong> <span>50MB</span>
+                </div>
+                <div class="info-detail">
+                    <strong>Preprocessing:</strong> <span>Auto-normalized</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <p>Rice Disease AI Detection Platform</p>
+            <p>Powered by Flask + YOLOv8 Classification</p>
+            <p>© 2026 All Rights Reserved</p>
+        </div>
+    </footer>
+
+    <!-- Loading Modal -->
+    <div id="loadingModal" class="loading-modal" style="display: none;">
+        <div class="loading-content">
+            <div class="loader">
+                <div class="scanner"></div>
+            </div>
+            <p class="loading-text">Analyzing Rice Leaf...</p>
+            <p class="loading-subtext">Running YOLOv8 Classification...</p>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+</html>

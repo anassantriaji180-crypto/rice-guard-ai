@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#00AA00">
+    <title>Rice Disease AI Detection - Modern Design Demo</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        /* ========================================================================
+           RICE DISEASE AI DETECTION - MODERN CSS
+           Modern Green Design with Rice Logo Integration
+           ======================================================================== */
+
+        /* Color System */
+        :root {
+            --primary: #00AA00;
+            --primary-dark: #006600;
+            --secondary: #00DD00;
+            --accent: #00FF00;
+            --success: #00FF00;
+            --background: #F0FAF0;
+            --surface: #FFFFFF;
+            --glass: rgba(0, 170, 0, 0.1);
+            --glass-border: rgba(0, 170, 0, 0.25);
+            --text-primary: #0F172A;
+            --text-secondary: #64748B;
+            --text-light: #94A3B8;
+            --border-color: #E2F5E2;
+            --error: #EF4444;
+            --warning: #F59E0B;
+        }
+
+        /* Reset & Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            background-color: var(--background);
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            color: var(--text-primary);
+            background-color: var(--background);
+            line-height: 1.6;
+            font-size: 16px;
+        }
+
+        /* Typography */
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+            line-height: 1.2;
+            letter-spacing: -0.5px;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            letter-spacing: -1px;
+        }
+
+        h2 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        h3 {
+            font-size: 1.25rem;
+        }
+
+        p {
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* Navigation Bar */
+        .navbar {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: var(--glass);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--glass-border);
+            padding: 1rem 0;
+            transition: all 0.3s ease;
+        }
+
+        .navbar.scrolled {
+            background: rgba(255, 255, 255, 0.25);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-weight: 700;
+            font-size: 1.25rem;
+            color: var(--primary);
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .logo-image {
+            height: 32px;
+            width: auto;
+            object-fit: contain;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-link {
+            color: var(--text-secondary);
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            color: var(--primary);
+        }
+
+        /* Hero Section */
+        .hero-section {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(135deg, #F0FAF0 0%, #E8F8E8 50%, #D4F1D4 100%);
+            padding: 4rem 2rem;
+        }
+
+        .hero-content {
+            max-width: 1200px;
+            width: 100%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            z-index: 10;
+            animation: fadeInUp 0.8s ease;
+        }
+
+        .hero-left {
+            animation: slideInLeft 0.8s ease 0.1s backwards;
+        }
+
+        .ai-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--primary);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 50px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            width: fit-content;
+        }
+
+        .badge-dot {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            background: var(--accent);
+            border-radius: 50%;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        .hero-title {
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #00AA00, #00DD00);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            max-width: 500px;
+            line-height: 1.8;
+        }
+
+        .cta-button {
+            background: linear-gradient(135deg, #00AA00 0%, #00DD00 100%);
+            color: white;
+            border: none;
+            padding: 1rem 3rem;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 30px rgba(0, 170, 0, 0.35);
+            position: relative;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 50px rgba(0, 170, 0, 0.45);
+        }
+
+        .cta-button:active {
+            transform: translateY(-1px);
+        }
+
+        /* Hero Animation */
+        .hero-right {
+            animation: slideInRight 0.8s ease 0.1s backwards;
+        }
+
+        .hero-animation {
+            position: relative;
+            width: 300px;
+            height: 300px;
+            margin: 0 auto;
+        }
+
+        .leaf-illustration {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 120px;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .scanning-circle {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 250px;
+            height: 250px;
+            border: 2px solid var(--primary);
+            border-radius: 50%;
+            animation: rotate 4s linear infinite;
+        }
+
+        .scanning-line {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 200px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent 0%, #00FF00 50%, transparent 100%);
+            animation: scan-pulse 2s ease-in-out infinite;
+            box-shadow: 0 0 15px rgba(0, 255, 0, 0.8);
+        }
+
+        /* Section */
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-header h2 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .section-header p {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translate(-50%, -50%) translateY(0px);
+            }
+            50% {
+                transform: translate(-50%, -50%) translateY(-20px);
+            }
+        }
+
+        @keyframes rotate {
+            from {
+                transform: translate(-50%, -50%) rotate(0deg);
+            }
+            to {
+                transform: translate(-50%, -50%) rotate(360deg);
+            }
+        }
+
+        @keyframes scan-pulse {
+            0%, 100% {
+                opacity: 0.3;
+            }
+            50% {
+                opacity: 1;
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.5;
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .nav-menu {
+                gap: 1rem;
+            }
+
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-animation {
+                width: 200px;
+                height: 200px;
+            }
+
+            .leaf-illustration {
+                font-size: 80px;
+            }
+        }
+
+        .detection-section {
+            padding: 6rem 2rem;
+            background: white;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .feature-card {
+            background: linear-gradient(135deg, rgba(0, 170, 0, 0.08) 0%, rgba(0, 221, 0, 0.05) 100%);
+            border: 1px solid rgba(0, 170, 0, 0.2);
+            padding: 2rem;
+            border-radius: 16px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 40px rgba(0, 170, 0, 0.15);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-card h3 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .footer {
+            background: var(--text-primary);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 4rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <img src="static/images/rice-logo.png" alt="Rice Logo" class="logo-image">
+                <span>RiceGuard AI</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#home" class="nav-link active">Home</a></li>
+                <li><a href="#features" class="nav-link">Features</a></li>
+                <li><a href="#about" class="nav-link">About</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-section">
+        <div class="hero-content">
+            <div class="hero-left">
+                <div class="ai-badge">
+                    <span class="badge-dot"></span>
+                    Powered by YOLOv8 AI
+                </div>
+                <h1 class="hero-title">Rice Disease AI Detection</h1>
+                <p class="hero-subtitle">Real-Time Rice Leaf Disease Classification Powered by YOLOv8 and Artificial Intelligence</p>
+                <button class="cta-button">Start Detection</button>
+            </div>
+            <div class="hero-right">
+                <div class="hero-animation">
+                    <div class="scanning-circle"></div>
+                    <div class="scanning-line"></div>
+                    <div class="leaf-illustration">🌾</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="detection-section">
+        <div class="section-header">
+            <h2>Modern Features</h2>
+            <p>Cutting-edge technology for accurate disease detection</p>
+        </div>
+
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">📸</div>
+                <h3>Image Upload</h3>
+                <p>Drag and drop or click to upload rice leaf images for instant analysis</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">📷</div>
+                <h3>Live Camera</h3>
+                <p>Capture images directly from your device camera in real-time</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">⚡</div>
+                <h3>Instant Results</h3>
+                <p>Get AI-powered disease classification within seconds</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">📊</div>
+                <h3>Detailed Analysis</h3>
+                <p>View confidence scores and probability breakdowns for all disease classes</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">📜</div>
+                <h3>History Tracking</h3>
+                <p>Keep track of all previous predictions and analysis history</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🎨</div>
+                <h3>Modern UI</h3>
+                <p>Beautiful, responsive design optimized for all devices</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2024 RiceGuard AI - Rice Disease Detection System. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Simple scroll animation for navbar
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 100) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Simple nav link scrolling
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const target = e.target.getAttribute('href');
+                document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+                e.target.classList.add('active');
+                if (target !== '#') {
+                    document.querySelector(target)?.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
